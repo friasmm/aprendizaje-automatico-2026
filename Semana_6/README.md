@@ -23,3 +23,7 @@ Actividad obligatoria: comparación de dos modelos de clasificación sobre un da
 | SVM (kernel RBF) | 0,822 | 0,805 | 0,781 | 0,903 |
 
 Los dos modelos superan claramente al modelo de referencia (que predice siempre "formal" y acierta el 60,6%). El SVM es apenas mejor, pero se elige la Regresión Logística por ser más rápida y mucho más fácil de interpretar.
+
+## Video
+
+[Ver el video de la actividad](video_semana6.mov)
