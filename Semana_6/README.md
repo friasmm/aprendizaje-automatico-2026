@@ -26,4 +26,4 @@ Los dos modelos superan claramente al modelo de referencia (que predice siempre 
 
 ## Video
 
-[Ver el video de la actividad](video_semana6.mov)
+[Ver el video de la actividad](video_semana6.mp4)
