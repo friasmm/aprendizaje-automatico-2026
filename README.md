@@ -90,7 +90,14 @@ Predicción de la **informalidad laboral** de las personas asalariadas en Argent
 
 **Tema:** anticipar qué ramas de la industria manufacturera argentina van a estar en contracción interanual dentro de los próximos tres meses (clasificación binaria).
 
-**Estado:** propuesta presentada en el foro, a la espera de la devolución del profesor. Los datos ya están descargados y preparados.
+**Estado:** propuesta aprobada por el profesor, con la condición de demostrar que las variables predictoras se relacionan con la variable objetivo. Se agregaron como predictoras la capacidad instalada, el tipo de cambio, las tasas de interés y las importaciones. Próximo paso: unir todas las fuentes en una tabla por división y mes, y analizar la relación de cada variable con la contracción a tres meses.
+
+Datos externos agregados en `Parcial/data/raw/` (descargados el 25/10/2026):
+
+- `sh_capacidad_09_26.xls`: utilización de la capacidad instalada por bloque sectorial (INDEC).
+- `com3500.xls`: tipo de cambio de referencia, Comunicación A 3500 (BCRA).
+- `series.xlsm`: series monetarias, incluye tasas de interés (BCRA).
+- `balanmensual.xls`: exportaciones, importaciones y saldo comercial mensuales desde 1990 (INDEC).
 
 - `Parcial/data/raw/sh_ipi_manufacturero_2026.xls`: serie original del IPI manufacturero (enero 2016 a agosto 2026).
 - `Parcial/src/preparar_ipi.py`: convierte la planilla en una tabla con una fila por división y mes.
