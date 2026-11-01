@@ -3,8 +3,10 @@ una fila por división y mes, lista para el análisis."""
 from pathlib import Path
 import pandas as pd
 
-ENTRADA = Path("Parcial/data/raw/sh_ipi_manufacturero_2026.xls")
-SALIDA = Path("Parcial/data/processed/ipi_divisiones_mensual.csv")
+# Rutas relativas a la carpeta Parcial/, así el script corre desde cualquier lugar
+BASE = Path(__file__).resolve().parents[1]
+ENTRADA = BASE / "data/raw/sh_ipi_manufacturero_2026.xls"
+SALIDA = BASE / "data/processed/ipi_divisiones_mensual.csv"
 
 # Códigos de las 16 divisiones (el resto de las columnas son subclases)
 DIVISIONES = ["15", "16", "17", "18-19", "20-22", "23", "24", "25",
@@ -45,4 +47,4 @@ print("Filas:", len(largo))
 print("Divisiones:", largo["codigo_division"].nunique())
 print("Período:", largo["fecha"].min().date(), "a", largo["fecha"].max().date())
 print("Valores faltantes:", largo["ipi"].isna().sum())
-print("Guardado en:", SALIDA)
+print("Guardado en:", SALIDA.relative_to(BASE.parent))

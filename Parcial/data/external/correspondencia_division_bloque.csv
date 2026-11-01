@@ -1,0 +1,17 @@
+codigo_division,division,bloque_capacidad,criterio
+15,Alimentos y bebidas,Productos alimenticios y bebidas,directa
+16,Productos de tabaco,Productos del tabaco,directa
+17,Productos textiles,Productos textiles,directa
+18-19,"Prendas de vestir, cuero y calzado",Productos textiles,aproximada: no hay bloque propio; se usa el más cercano (A REVISAR)
+20-22,"Madera, papel, edición e impresión",Papel y cartón + Edición e impresión,promedio de los dos bloques (madera no tiene bloque)
+23,"Refinación del petróleo, coque y combustible nuclear",Refinación del petróleo,directa
+24,Sustancias y productos químicos,Sustancias y productos químicos,directa (el bloque excluye farmacéutica)
+25,Productos de caucho y plástico,Productos de caucho y plástico,directa
+26,Productos minerales no metálicos,Productos minerales no metálicos,directa
+27,Industrias metálicas básicas,Industrias metálicas básicas,directa
+28,Productos de metal,Metalmecánica excluida industria automotriz,el bloque agrupa 28 a 35 salvo automotriz
+29,Maquinaria y equipo,Metalmecánica excluida industria automotriz,el bloque agrupa 28 a 35 salvo automotriz
+30-33,"Otros equipos, aparatos e instrumentos",Metalmecánica excluida industria automotriz,el bloque agrupa 28 a 35 salvo automotriz
+34,"Vehículos automotores, carrocerías, remolques y autopartes",Industria automotriz,directa
+35,Otro equipo de transporte,Metalmecánica excluida industria automotriz,el bloque agrupa 28 a 35 salvo automotriz
+36-38,"Muebles y colchones, y otras industrias manufactureras",Nivel general,sin bloque: se usa el nivel general (A REVISAR)
