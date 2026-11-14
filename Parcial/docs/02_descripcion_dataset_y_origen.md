@@ -9,6 +9,7 @@ Versión corregida según la devolución de la Entrega 2 (horizonte de predicci�
 | Notebook de carga, exploración, transformaciones y preparación (ejecutado) | [`notebooks/1.0-mf-carga-exploracion-dataset.ipynb`](../notebooks/1.0-mf-carga-exploracion-dataset.ipynb) |
 | Dataset final para modelar | [`data/processed/tabla_modelo.csv`](../data/processed/tabla_modelo.csv) |
 | Datos originales, sin modificar | [`data/raw/`](../data/raw) |
+| Diccionario de datos (todas las columnas, unidades, fuentes y rangos) | [`references/diccionario_de_datos.md`](../references/diccionario_de_datos.md) |
 | Correspondencia divisiones ↔ bloques de capacidad | [`data/external/correspondencia_division_bloque.csv`](../data/external/correspondencia_division_bloque.csv) |
 | Código de preparación | [`contraccion_industrial/`](../contraccion_industrial) |
 | Gráficos de la exploración | [`reports/figures/`](../reports/figures) |

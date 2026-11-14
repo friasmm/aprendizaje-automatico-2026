@@ -19,6 +19,8 @@ La Entrega 2 fue corregida según la devolución del profesor; el detalle de los
 
 Datos públicos del **INDEC** (índice de producción industrial manufacturero, capacidad instalada, balanza comercial) y del **BCRA** (tipo de cambio mayorista y tasa BADLAR). Enlaces, fechas de descarga y calendario de publicación en [`docs/02_descripcion_dataset_y_origen.md`](docs/02_descripcion_dataset_y_origen.md).
 
+El significado, la unidad, la fuente, la disponibilidad temporal y el rango de cada columna de la tabla de modelado están en el [**diccionario de datos**](references/diccionario_de_datos.md).
+
 ## Modelos
 
 Regresión logística, árbol de decisión, random forest, gradient boosting y KNN, comparados con un modelo de referencia (la división sigue igual que en el último dato publicado), con validación temporal. Se desarrollan en la próxima etapa.
@@ -42,7 +44,7 @@ Parcial/
 ├── models/                     → modelos entrenados (próxima etapa)
 ├── notebooks/
 │   └── 1.0-mf-carga-exploracion-dataset.ipynb
-├── references/                 → metodologías del INDEC
+├── references/                 → diccionario de datos y metodologías del INDEC
 ├── reports/
 │   └── figures/                → gráficos generados por el notebook
 └── contraccion_industrial/     → código del proyecto
