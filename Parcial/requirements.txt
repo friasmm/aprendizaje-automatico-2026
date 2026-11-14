@@ -1,0 +1,8 @@
+# Versiones usadas para ejecutar el notebook y los scripts (Python 3.10)
+pandas==2.3.3
+numpy==2.2.6
+matplotlib==3.10.9
+scikit-learn==1.7.2
+xlrd==2.0.2        # lectura de los .xls (INDEC, BCRA)
+openpyxl==3.1.5    # lectura de series.xlsm (BCRA)
+jupyter            # para abrir y ejecutar el notebook

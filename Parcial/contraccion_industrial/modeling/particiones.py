@@ -1,5 +1,5 @@
 """Separación temporal de la tabla división x mes, respetando:
-1. Que en entrenamiento solo entren filas cuyo resultado (IPI de t+3) ya
+1. Que en entrenamiento solo entren filas cuyo resultado (IPI de t+5) ya
    estaba publicado en el momento del corte.
 2. Que todas las divisiones de un mismo mes queden del mismo lado
    (los filtros son siempre por fecha, nunca por posición de fila).
@@ -7,6 +7,25 @@
    las demás quedan pendientes.
 """
 import pandas as pd
+
+from contraccion_industrial.config import PREDICTORAS
+
+
+def excluir_sin_historia(tabla, predictoras=PREDICTORAS):
+    """Tratamiento de faltantes (devolución Entrega 2): se excluyen los
+    primeros meses de la serie, que no tienen historia suficiente para
+    calcular rezagos y diferencias interanuales. No se imputa nada.
+
+    Se excluye el mes completo (las 16 divisiones) desde el inicio de la
+    serie hasta el último mes con alguna predictora faltante, y se verifica
+    que después de ese mes no quede ningún faltante. Así la regla depende
+    solo del pasado de cada fila y no de información futura.
+    """
+    incompletas = tabla[predictoras].isna().any(axis=1)
+    ultimo_mes_incompleto = tabla.loc[incompletas, "fecha"].max()
+    resto = tabla[tabla["fecha"] > ultimo_mes_incompleto]
+    assert not resto[predictoras].isna().any().any(), "Quedan faltantes después del período excluido"
+    return resto, tabla[tabla["fecha"] <= ultimo_mes_incompleto]
 
 
 def separar_por_corte(tabla, corte, fin_evaluacion=None):

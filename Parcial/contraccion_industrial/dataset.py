@@ -1,12 +1,14 @@
 """Convierte el Cuadro 2 del IPI manufacturero (INDEC) en una tabla larga:
-una fila por división y mes, lista para el análisis."""
-from pathlib import Path
+una fila por división y mes, lista para el análisis.
+
+Se corre desde la carpeta Parcial/ con:  python -m contraccion_industrial.dataset
+"""
 import pandas as pd
 
-# Rutas relativas a la carpeta Parcial/, así el script corre desde cualquier lugar
-BASE = Path(__file__).resolve().parents[1]
-ENTRADA = BASE / "data/raw/sh_ipi_manufacturero_2026.xls"
-SALIDA = BASE / "data/processed/ipi_divisiones_mensual.csv"
+from contraccion_industrial.config import BASE, PROCESSED, RAW
+
+ENTRADA = RAW / "sh_ipi_manufacturero_2026.xls"
+SALIDA = PROCESSED / "ipi_divisiones_mensual.csv"
 
 # Códigos de las 16 divisiones (el resto de las columnas son subclases)
 DIVISIONES = ["15", "16", "17", "18-19", "20-22", "23", "24", "25",

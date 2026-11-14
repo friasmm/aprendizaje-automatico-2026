@@ -8,27 +8,31 @@ balanza comercial del mes t. La capacidad instalada se toma con un mes de
 rezago (t-1), porque el archivo descargado llega a julio cuando el IPI llega
 a agosto: es la opción conservadora.
 
-Variable objetivo: 1 si el IPI de la división en t+3 es menor que en t-9
-(es decir, contracción interanual dentro de 3 meses).
+Variable objetivo: 1 si el IPI de la división en t+5 es menor que en t-7
+(contracción interanual del mes t+5).
 
-Se corre con:  python Parcial/src/armar_tabla.py  (desde cualquier carpeta)
+Horizonte (devolución Entrega 2): la predicción se hace en t+2, cuando se
+publica el IPI de t. Con objetivo en t+5, el mes que se predice queda 3 meses
+después del momento de la decisión, y su resultado se conoce en t+7 (cuando
+se publica el IPI de t+5).
+
+Se corre desde la carpeta Parcial/ con:  python -m contraccion_industrial.features
+(antes hay que correr contraccion_industrial.dataset)
 """
-from pathlib import Path
 import re
 import numpy as np
 import pandas as pd
 
-BASE = Path(__file__).resolve().parents[1]   # carpeta Parcial/
-RAW = BASE / "data/raw"
-IPI = BASE / "data/processed/ipi_divisiones_mensual.csv"
-CORRESP = BASE / "data/external/correspondencia_division_bloque.csv"
-SALIDA = BASE / "data/processed/tabla_modelo.csv"
+from contraccion_industrial.config import (BASE, EXTERNAL, HORIZONTE, PROCESSED, RAW,
+                                           REZAGO_PUBLICACION_IPI)
+
+IPI = PROCESSED / "ipi_divisiones_mensual.csv"
+CORRESP = EXTERNAL / "correspondencia_division_bloque.csv"
+SALIDA = PROCESSED / "tabla_modelo.csv"
 
 MESES = {"Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5,
          "Junio": 6, "Julio": 7, "Agosto": 8, "Septiembre": 9,
          "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
-HORIZONTE = 3
-REZAGO_PUBLICACION_IPI = 2   # el IPI del mes t se publica en el mes t+2
 
 
 def limpiar_mes(texto):
@@ -123,7 +127,7 @@ ipi["ipi_var_ia_cambio3m"] = ipi["ipi_var_ia"] - ipi.groupby("codigo_division")[
 ipi["contraccion_hoy"] = (ipi["ipi"] < g.shift(12)).astype(float)
 ipi.loc[g.shift(12).isna(), "contraccion_hoy"] = np.nan
 
-# Objetivo: IPI en t+3 vs. t+3-12
+# Objetivo: IPI en t+5 vs. t+5-12 = t-7 (3 meses después de la decisión en t+2)
 futuro = g.shift(-HORIZONTE)
 base = g.shift(12 - HORIZONTE)
 ipi["objetivo"] = (futuro < base).astype(float)
@@ -131,7 +135,7 @@ ipi.loc[futuro.isna() | base.isna(), "objetivo"] = np.nan
 
 # Disponibilidad temporal (devolución Entrega 1):
 # - mes_decision: mes en que se publica el IPI de t y se hace la predicción.
-# - mes_etiqueta_conocida: mes en que se publica el IPI de t+3, es decir,
+# - mes_etiqueta_conocida: mes en que se publica el IPI de t+5 (t+7), es decir,
 #   cuando el resultado de esa predicción ya se puede verificar.
 ipi["mes_decision"] = ipi["fecha"] + pd.DateOffset(months=REZAGO_PUBLICACION_IPI)
 ipi["mes_etiqueta_conocida"] = ipi["fecha"] + pd.DateOffset(
